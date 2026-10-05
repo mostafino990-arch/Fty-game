@@ -1,0 +1,15 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bost Racing</title>
+<style>body{margin:0;background:#090b10;color:#fff;font-family:Arial;text-align:center}.wrap{max-width:700px;margin:auto}canvas{width:100%;background:#252832;border:2px solid #7657ff;border-radius:16px;touch-action:none}button{padding:11px 20px;margin:10px;border:0;border-radius:10px;background:#7657ff;color:#fff;font-weight:bold}</style></head>
+<body><h1>🏎️ Bost Racing</h1><div class="wrap"><canvas id="c" width="700" height="420"></canvas><p>حرّك سيارتك يمين/شمال • النقاط: <b id="s">0</b></p><button onclick="location.href='../index.html'">العودة</button></div>
+<script>
+const c=document.getElementById('c'),x=c.getContext('2d'),s=document.getElementById('s');let car={x:325,y:340,w:50,h:75},blocks=[],score=0,left=false,right=false,over=false;
+addEventListener('keydown',e=>{if(e.key==='ArrowLeft')left=true;if(e.key==='ArrowRight')right=true});addEventListener('keyup',e=>{if(e.key==='ArrowLeft')left=false;if(e.key==='ArrowRight')right=false});
+c.addEventListener('pointermove',e=>{if(e.pointerType==='touch'){let r=c.getBoundingClientRect();car.x=(e.clientX-r.left)*(700/r.width)-25}});
+function add(){blocks.push({x:80+Math.random()*500,y:-90,w:45,h:75})}
+function loop(){x.clearRect(0,0,700,420);x.fillStyle='#3a3d47';x.fillRect(70,0,560,420);x.strokeStyle='#ddd';x.setLineDash([30,25]);x.lineWidth=5;x.beginPath();x.moveTo(350,0);x.lineTo(350,420);x.stroke();x.setLineDash([]);
+if(left)car.x-=7;if(right)car.x+=7;car.x=Math.max(75,Math.min(575,car.x));if(Math.random()<.025)add();
+x.fillStyle='#28a9ff';x.fillRect(car.x,car.y,car.w,car.h);x.fillStyle='#111';x.fillRect(car.x+8,car.y+10,34,18);
+blocks.forEach(b=>{b.y+=6;x.fillStyle='#ff4d6d';x.fillRect(b.x,b.y,b.w,b.h);if(car.x<b.x+b.w&&car.x+car.w>b.x&&car.y<b.y+b.h&&car.y+car.h>b.y)over=true});
+blocks=blocks.filter(b=>b.y<450);if(!over){score++;s.textContent=Math.floor(score/5)}else{x.fillStyle='white';x.font='bold 40px Arial';x.fillText('اصطدمت! اضغط إعادة تحميل',180,210)}
+requestAnimationFrame(loop)}loop();
+</script></body></html>

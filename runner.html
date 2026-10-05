@@ -1,0 +1,13 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bost Runner</title>
+<style>body{margin:0;background:#08111b;color:white;font-family:Arial;text-align:center}h1{margin:18px}.wrap{max-width:700px;margin:auto}canvas{width:100%;background:linear-gradient(#122b46,#07111c);border:2px solid #7657ff;border-radius:16px;touch-action:none}button{margin:12px;padding:12px 25px;border:0;border-radius:10px;background:#7657ff;color:#fff;font-weight:bold}</style></head>
+<body><h1>🏃 Bost Runner</h1><div class="wrap"><canvas id="c" width="700" height="380"></canvas><p>اضغط على الشاشة للقفز • النقاط: <b id="s">0</b></p><button onclick="location.href='../index.html'">العودة</button></div>
+<script>
+const c=document.getElementById('c'),x=c.getContext('2d'),score=document.getElementById('s');let p={x:90,y:300,w:35,h:45,vy:0},obs=[],sc=0,over=false,spawn=0;
+function jump(){if(p.y>=300&&!over)p.vy=-13;if(over)location.reload()} c.addEventListener('pointerdown',jump);addEventListener('keydown',e=>{if(e.code==='Space'||e.code==='ArrowUp')jump()});
+function loop(){x.clearRect(0,0,700,380);x.fillStyle='#102b20';x.fillRect(0,345,700,35);p.vy+=.65;p.y+=p.vy;if(p.y>300){p.y=300;p.vy=0}
+spawn++;if(spawn>85){obs.push({x:700,y:315,w:25+Math.random()*20,h:30});spawn=0}
+x.fillStyle='#55e6a5';x.fillRect(p.x,p.y,p.w,p.h);x.fillStyle='#ff4d6d';
+obs.forEach(o=>{o.x-=6;x.fillRect(o.x,o.y,o.w,o.h);if(p.x<o.x+o.w&&p.x+p.w>o.x&&p.y<o.y+o.h&&p.y+p.h>o.y)over=true});
+obs=obs.filter(o=>o.x>-50);if(!over){sc++;score.textContent=Math.floor(sc/10)}else{x.fillStyle='white';x.font='bold 38px Arial';x.fillText('انتهت اللعبة! اضغط للقفز مرة أخرى',100,180)}
+requestAnimationFrame(loop)}loop();
+</script></body></html>

@@ -1,0 +1,10 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bost Shooter</title>
+<style>body{margin:0;background:#080b12;color:white;font-family:Arial;text-align:center}.wrap{max-width:700px;margin:auto}canvas{width:100%;background:radial-gradient(circle,#182237,#070a10);border:2px solid #7657ff;border-radius:16px;touch-action:none}button{padding:11px 20px;margin:10px;border:0;border-radius:10px;background:#7657ff;color:#fff;font-weight:bold}</style></head>
+<body><h1>🎯 Bost Shooter</h1><div class="wrap"><canvas id="c" width="700" height="420"></canvas><p>اضغط على الهدف • الوقت: <b id="t">30</b> ثانية • النقاط: <b id="s">0</b></p><button onclick="location.href='../index.html'">العودة</button></div>
+<script>
+const c=document.getElementById('c'),x=c.getContext('2d'),s=document.getElementById('s'),t=document.getElementById('t');let target={x:350,y:210,r:32},score=0,time=30,over=false;
+function move(){target.x=45+Math.random()*610;target.y=45+Math.random()*330;target.r=20+Math.random()*20}
+c.addEventListener('pointerdown',e=>{if(over)return location.reload();let r=c.getBoundingClientRect(),mx=(e.clientX-r.left)*700/r.width,my=(e.clientY-r.top)*420/r.height;if(Math.hypot(mx-target.x,my-target.y)<target.r){score++;s.textContent=score;move()}});
+setInterval(()=>{if(!over){time--;t.textContent=time;if(time<=0)over=true}},1000);
+function loop(){x.clearRect(0,0,700,420);x.beginPath();x.arc(target.x,target.y,target.r,0,7);x.fillStyle='#ff405c';x.fill();x.beginPath();x.arc(target.x,target.y,target.r*.55,0,7);x.fillStyle='#fff';x.fill();x.beginPath();x.arc(target.x,target.y,target.r*.25,0,7);x.fillStyle='#ff405c';x.fill();if(over){x.fillStyle='white';x.font='bold 40px Arial';x.fillText('انتهى الوقت! اضغط للعب مجددًا',115,210)}requestAnimationFrame(loop)}loop();
+</script></body></html>

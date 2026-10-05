@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bostgame الألعاب الأصلية</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        p.subtitle {
+            color: #8e8e93;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .games-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 24px;
+            width: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .game-card:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .game-image {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .game-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 10px 0 20px 0;
+            color: #ffffff;
+        }
+
+        .play-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 0;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s ease;
+            display: inline-block;
+        }
+
+        .play-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .play-btn:active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bostgame ألعاب الأصلية</h1>
+    <p class="subtitle">ثلاث ألعاب تجريبية صنعت خصيصًا للمنصة.</p>
+
+    <div class="games-container">
+        
+        <div class="game-card">
+            <div class="game-image">🏃</div>
+            <div class="game-title">Bost Runner</div>
+            <a href="#" class="play-btn">Play</a>
+        </div>
+
+        <div class="game-card">
+            <div class="game-image">🏎</div>
+            <div class="game-title">Bost Racing</div>
+            <a href="#" class="play-btn">Play</a>
+        </div>
+
+        <div class="game-card">
+            <div class="game-image">🎮</div>
+            <div class="game-title">Bost Shooter</div>
+            <a href="#" class="play-btn">Play</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
